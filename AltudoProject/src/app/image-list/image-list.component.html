@@ -1,0 +1,29 @@
+<form class="form-example">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput placeholder="Informe a URL" matInput [formControl]="urlFormControl"
+            [errorStateMatcher]="matcher">
+        <mat-error *ngIf="urlFormControl.hasError('required')">
+            Url is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" [disabled]="waiting" (click)="processaUrl();">Processar Url</button>
+
+
+    <mat-grid-list cols="3">
+        <mat-grid-tile cols="1" style="overflow-y: auto;">
+            <div class="image-list">
+                <ng-container *ngFor="let image of images">
+                    <img class="image image-list-item__image" src="{{image}}">
+                </ng-container>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile cols="2">
+            <div style="display: block">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend"
+                    [colors]="chartColors" width="300px" height="300px"></canvas>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</form>
